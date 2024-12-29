@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eatbreakfast-club-deployment
+spec:
+  replicas: 1
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - name: app
+        image: ghcr.io/defeated/eatbreakfast.club:main
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 8080
+        env:
+          - name: THRUSTER_HTTP_PORT
+            value: "8080"
+          - name: RAILS_MASTER_KEY
+            valueFrom:
+              secretKeyRef:
+                name: rails-secrets
+                key: rails_master_key
