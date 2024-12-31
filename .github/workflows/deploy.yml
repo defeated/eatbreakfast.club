@@ -1,0 +1,23 @@
+name: Deploy
+
+on:
+  workflow_run:
+    workflows: [Publish]
+    types: [completed]
+    branches: [main]
+
+env:
+  IMAGE_NAME: ghcr.io/${{ github.repository }}:main
+  K8S_DEPLOY: deployment/eatbreakfast-club-deployment
+
+jobs:
+  deploy-k8s:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DO_GH_K8S_CFG }}
+      - run: doctl kubernetes cluster kubeconfig save --expiry-seconds 600 ${{ vars.DO_K8S_CLUSTER }}
+      - run: kubectl rollout restart $K8S_DEPLOY
+      - run: kubectl rollout status $K8S_DEPLOY
