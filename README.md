@@ -12,13 +12,14 @@ The app currently doesn't do anything.
   - see [application.tailwind.css](/app/assets/stylesheets/application.tailwind.css)
 3. setup actions
   - see [publish.yml](/.github/workflows/publish.yml)
+  - see [deploy.yml](/.github/workflows/deploy.yml)
   - see [packages](/pkgs/container/eatbreakfast.club)
 4. registered domain through Cloudflare
   - includes SSL, CDN, caching, etc.
 5. hosted on DigitalOcean Kubernetes (DOKS)
   - see [load_balancer.yml](/config/kube/load_balancer.yml)
   - see [deployment.yml](/config/kube/deployment.yml)
-  - run `kubectl apply -f config/kube`
+  - runs `kubectl rollout restart deployment/eatbreakfast-club-deployment`
 
 ## Diagram
 
