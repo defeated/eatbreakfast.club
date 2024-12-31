@@ -1,6 +1,4 @@
-<div style="font-size:3rem;">
-🥓🧇🥞🍳☕
-</div>
+![A table piled high with classic American breakfast foods featuring fluffy scrambled eggs, golden pancakes stacked with melting butter and maple syrup](/public/hero.webp)
 
 # README
 
