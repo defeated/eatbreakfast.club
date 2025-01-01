@@ -14,16 +14,23 @@ spec:
         app: app
     spec:
       containers:
-      - name: app
-        image: ghcr.io/defeated/eatbreakfast.club:main
-        imagePullPolicy: Always
-        ports:
-          - containerPort: 8080
-        env:
-          - name: THRUSTER_HTTP_PORT
-            value: "8080"
-          - name: RAILS_MASTER_KEY
-            valueFrom:
-              secretKeyRef:
-                name: rails-secrets
-                key: rails_master_key
+        - name: app
+          image: ghcr.io/defeated/eatbreakfast.club:main
+          imagePullPolicy: Always
+          volumeMounts:
+            - mountPath: /rails/storage
+              name: storage-volume
+          ports:
+            - containerPort: 8080
+          env:
+            - name: THRUSTER_HTTP_PORT
+              value: "8080"
+            - name: RAILS_MASTER_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: rails-secrets
+                  key: rails_master_key
+      volumes:
+        - name: storage-volume
+          persistentVolumeClaim:
+            claimName: rails-storage-pvc
