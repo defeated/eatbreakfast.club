@@ -4,7 +4,7 @@ metadata:
   name: eatbreakfast-club-deployment
 spec:
   replicas: 1
-  revisionHistoryLimit: 0
+  revisionHistoryLimit: 10
   selector:
     matchLabels:
       app: app

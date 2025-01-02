@@ -38,6 +38,15 @@ The app currently doesn't do anything.
   - `kubectl exec -it deployment/eatbreakfast-club-deployment -- /bin/bash`
 - tail logs
   - `kubectl logs -f deployment/eatbreakfast-club-deployment`
+- rollback
+  - view revisions
+    - `kubectl rollout history deployment/eatbreakfast-club-deployment`
+  - view revision changes
+    - `kubectl rollout history deployment/eatbreakfast-club-deployment --revision=2`
+  - rollback to last revision
+    - `kubectl rollout undo deployment/eatbreakfast-club-deployment`
+  - rollback to specific revision
+    - `kubectl rollout undo deployment/eatbreakfast-club-deployment --to-revision=2`
 
 ## Diagram
 
