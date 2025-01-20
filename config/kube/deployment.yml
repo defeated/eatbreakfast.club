@@ -13,13 +13,6 @@ spec:
       labels:
         app: app
     spec:
-      initContainers:
-        - name: storage-volumn-permission-fix
-          image: busybox
-          command: ["/bin/chmod","-R","777", "/rails/storage"]
-          volumeMounts:
-            - mountPath: /rails/storage
-              name: storage-volume
       containers:
         - name: app
           image: ghcr.io/defeated/eatbreakfast.club:main
@@ -43,3 +36,5 @@ spec:
         - name: storage-volume
           persistentVolumeClaim:
             claimName: rails-storage-pvc
+      securityContext:
+        fsGroup: 1000
