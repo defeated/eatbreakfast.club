@@ -22,7 +22,7 @@ The app currently doesn't do anything.
 
 - includes SSL, CDN, caching, etc.
 
-5. hosted on DigitalOcean Kubernetes (DOKS)
+5. hosted on Linode Kubernetes (LKE)
 
 - see [load_balancer.yml](/config/kube/load_balancer.yml)
 - see [deployment.yml](/config/kube/deployment.yml)
@@ -30,6 +30,9 @@ The app currently doesn't do anything.
 
 ## Other commands
 
+- make sure `config/master.key` is added as a secret
+  - `kubectl create secret generic rails-secrets --from-literal=rails_master_key=$(cat config/master.key)`
+    - this is used in [deployment.yml](/config/kube/deployment.yml)
 - after making production infrastructure changes
   - `kubectl apply -f config/kube`
 - open production rails console
@@ -63,7 +66,7 @@ sequenceDiagram
     B->>P: Encrypted traffic between browser
     end
     rect rgba(0,96,128,0.5)
-    Note over P,Pu: DigitalOcean<br/>k8s
+    Note over P,Pu: Linode<br/>k8s
     P->>L: Routes traffic to WorkerNode(s)
     L->>W: Request
     rect rgba(128,0,0,0.5)

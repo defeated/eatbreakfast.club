@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: eatbreakfast-club-load-balancer
   annotations:
-    service.beta.kubernetes.io/do-loadbalancer-protocol: "http"
-    service.beta.kubernetes.io/do-loadbalancer-http-ports: "80"
-    service.beta.kubernetes.io/do-loadbalancer-healthcheck-protocol: "http"
-    service.beta.kubernetes.io/do-loadbalancer-healthcheck-path: "/up"
+    service.beta.kubernetes.io/linode-loadbalancer-default-protocol: "http"
+    service.beta.kubernetes.io/linode-loadbalancer-port-80: '{"protocol": "http"}'
+    service.beta.kubernetes.io/linode-loadbalancer-check-type: "http"
+    service.beta.kubernetes.io/linode-loadbalancer-check-path: "/up"
 spec:
   type: LoadBalancer
   selector:
