@@ -21,6 +21,6 @@ jobs:
       - uses: linode/action-linode-cli@v1
         with:
           token: ${{ secrets.LKE_GH_K8S_CFG_TOKEN }}
-      - run: linode-cli --json lke kubeconfig-view ${{ vars.LKE_K8S_CLUSTER }} | jq -r '.[].kubeconfig | @base64d' > $KUBECONFIG
+      - run: linode-cli lke kubeconfig-view ${{ vars.LKE_K8S_CLUSTER }} --text --no-headers | base64 -d > $KUBECONFIG
       - run: kubectl rollout restart $K8S_DEPLOY
       - run: kubectl rollout status $K8S_DEPLOY
