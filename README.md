@@ -16,7 +16,7 @@ The app currently doesn't do anything.
 
 - see [publish.yml](/.github/workflows/publish.yml)
 - see [deploy.yml](/.github/workflows/deploy.yml)
-- see [packages](/pkgs/container/eatbreakfast.club)
+- see [packages](https://github.com/users/defeated/packages/container/package/eatbreakfast.club)
 
 4. registered domain through Cloudflare
 
